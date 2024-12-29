@@ -24,6 +24,31 @@ function Navbar() {
                 {isMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
         </div>
+        <ul className={`${styles.navLinks} ${isMenuOpen ? styles.openMenu : styles.closedMenu}`}>
+          <li>
+              <Link to={"#"} className={styles.navLinks}>
+              Tentang
+              </Link>
+          </li>
+          <li>
+              <Link to={"#"} className={styles.navLinks}>
+              Penetapan Harga
+              </Link>
+          </li>
+          <li>
+              <Link to={"#"} className={styles.navLinks}>
+              Tim
+              </Link>
+          </li>
+        </ul>
+            <div className={styles.actionButtons}>
+                <button className={styles.getStartedButton}>
+                  Mulai
+                </button>
+                <button className={styles.loginButton}>
+                  Login
+                </button>
+            </div>
     </div>
   </nav>
   )
