@@ -19,6 +19,11 @@ function Navbar() {
                 "Logo"
             )}
         </Link>
+        <div className="md:hidden">
+            <button onClick={toggleMenu} className={styles.toggleButton}>
+                {isMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+        </div>
     </div>
   </nav>
   )
