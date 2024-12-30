@@ -27,7 +27,7 @@ function HeroSection() {
   return (
     <section className={styles.section}>
         <div className={styles.textContainer}>
-            <h2>
+            <h2 className={styles.title}>
                 Kami <span className="text-green-500">Fokus</span> Memperbaiki <br /> Rambut Anda
             </h2>
             <p className={styles.description}>
@@ -36,6 +36,17 @@ function HeroSection() {
             <button className={styles.getStartedButton}>
                 Mulai
             </button>
+        </div>
+        <div className={styles.canvasContainer}>
+            <div className={styles.gradientCircle}>
+
+            </div>
+            <Canvas>
+                <ambientLight intensity={1} />
+                <directionalLight position={[10, 10, 5]} intensity={0.5} />
+                <BlowDryer  />
+                <OrbitControls />
+            </Canvas>
         </div>
     </section>
   )
