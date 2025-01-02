@@ -44,17 +44,37 @@ function PaymentPlaneSection() {
         return
       }
       try {
-        const response = await axios.post('Dari Backend'),{
+        const response = await axios.post('Dari Belakang', {
           planId: plan.name,
           planAmount: plan.amount,
           planCurrency: 'idr',
+        })
+        if(response.data && response.data.url){
+          window.location.href = response.data.url
+        } else{
+          console.log("Gagal membuat pembayaran")
         }
       } catch (error) {
-        
+        console.log("Error Pada Pembuatan Sesion Pembayaran", error)
       }
     }
   return (
-    <div>PaymentPlaneSection</div>
+    <section className="bg-gray-100 py-16 px-6">
+      <h3 className="text-3xl font-semibold text-center mb-4">
+      Paket penetapan harga untuk tim dari semua ukuran
+      </h3>
+      <p className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {plans.map((plans)=>(
+          <div key={plans.name} className={`rounded-lg shadow-lg p-8 text-center border-2 ${plans.popular ? 'border-red-500 bg-red-50': 'border-gray-200 bg-white'} `}>
+            {plans.popular && (
+              <span className="text-sm font-semibold text-red-600 bg-red-200 rounded-full px-3 py-1 inline-block mb-3">
+                Paling Populer
+              </span>
+            )}
+          </div>
+        ))}
+      </p>
+    </section>
   )
 }
 
