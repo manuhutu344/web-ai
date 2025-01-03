@@ -8,6 +8,7 @@ function PaymentPlaneSection() {
     const plans = [
         {
             name: 'Coba',
+            popular: true,
             amount: 1500,
             description: "Coba Saja Baru Coba",
             features: [
@@ -18,6 +19,7 @@ function PaymentPlaneSection() {
         },
         {
           name: 'Coba 1',
+          popular: true,
           amount: 2500,
           description: "Coba Saja Baru Coba",
           features: [
@@ -28,6 +30,7 @@ function PaymentPlaneSection() {
       },
       {
         name: 'Coba 2',
+        popular: true,
         amount: 3500,
         description: "Coba Saja Baru Coba",
         features: [
@@ -64,18 +67,18 @@ function PaymentPlaneSection() {
       Paket penetapan harga untuk tim dari semua ukuran
       </h3>
       <p className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {plans.map((plans)=>(
-          <div key={plans.name} className={`rounded-lg shadow-lg p-8 text-center border-2 ${plans.popular ? 'border-red-500 bg-red-50': 'border-gray-200 bg-white'} `}>
-            {plans.popular && (
+        {plans.map((plan)=>(
+          <div key={plan.name} className={`rounded-lg shadow-lg p-8 text-center border-2 ${plan.popular ? 'border-red-500 bg-red-50': 'border-gray-200 bg-white'} `}>
+            {plan.popular && (
               <span className="text-sm font-semibold text-red-600 bg-red-200 rounded-full px-3 py-1 inline-block mb-3">
                 Paling Populer
               </span>
             )}
             <h4 className="font-bold text-lg text-grey-700 mb-2">
-              {plans.name}
+              {plan.name}
             </h4>
             <p className="text-grey-500 text-sm mb-4">
-
+              {plan.description}
             </p>
           </div>
         ))}
