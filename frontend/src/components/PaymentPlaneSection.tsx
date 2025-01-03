@@ -71,6 +71,12 @@ function PaymentPlaneSection() {
                 Paling Populer
               </span>
             )}
+            <h4 className="font-bold text-lg text-grey-700 mb-2">
+              {plans.name}
+            </h4>
+            <p className="text-grey-500 text-sm mb-4">
+
+            </p>
           </div>
         ))}
       </p>
