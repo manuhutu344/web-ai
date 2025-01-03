@@ -8,7 +8,6 @@ function PaymentPlaneSection() {
     const plans = [
         {
             name: 'Coba',
-            popular: true,
             amount: 1500,
             description: "Coba Saja Baru Coba",
             features: [
@@ -30,7 +29,6 @@ function PaymentPlaneSection() {
       },
       {
         name: 'Coba 2',
-        popular: true,
         amount: 3500,
         description: "Coba Saja Baru Coba",
         features: [
@@ -74,12 +72,26 @@ function PaymentPlaneSection() {
                 Paling Populer
               </span>
             )}
-            <h4 className="font-bold text-lg text-grey-700 mb-2">
+            <h4 className="font-bold text-lg text-gray-700 mb-2">
               {plan.name}
             </h4>
             <p className="text-grey-500 text-sm mb-4">
               {plan.description}
             </p>
+            <p className="text-4xl font-bold text-gray-800 mb-6">
+                ${plan.amount / 100} <span className="text-lg text-gray-500 ">/Bulan</span>
+            </p>
+            <ul className="text-left text-gray-700 mb-6 space-y-2">
+                {plan.features.map((feature, index)=>(
+                  <li key={index} className="flex items-center">
+                    <FaCheckCircle className="text-green-500 mr-2"/>
+                    {feature}
+                  </li>
+                ))}
+            </ul>
+            <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition duration-200" onClick={()=>handleCheckout(plan)}>
+                {plan.name === 'Coba' ? 'Coba Sekarang' : 'Beli Sekarang'}
+            </button>
           </div>
         ))}
       </p>
