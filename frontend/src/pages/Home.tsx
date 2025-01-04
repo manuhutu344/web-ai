@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import CompaniesSection from "../components/CompaniesSection"
 import PaymentPlaneSection from "../components/PaymentPlaneSection"
+import Foter from "../components/Foter"
 
 function Home() {
   const navigate = useNavigate()
@@ -12,6 +13,7 @@ function Home() {
       <HeroSection />
       <CompaniesSection />
       <PaymentPlaneSection />
+      <Foter />
     </div>
   )
 }
