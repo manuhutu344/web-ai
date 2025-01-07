@@ -2,6 +2,7 @@ import { useState } from "react"
 import {FaCheckCircle} from "react-icons/fa"
 import axios from "axios"
 import {loadStripe} from "@stripe/react-stripe-js"
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
 
 function PaymentPlaneSection() {
     const [billingCycle, setBillingCycle] = useState('monthly')
