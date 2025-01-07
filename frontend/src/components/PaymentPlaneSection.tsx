@@ -1,8 +1,9 @@
 import { useState } from "react"
 import {FaCheckCircle} from "react-icons/fa"
 import axios from "axios"
-import {loadStripe} from "@stripe/react-stripe-js"
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
+import { loadStripe } from '@stripe/stripe-js'
+
+const stripePromise = loadStripe('pk_test_51PaxYrHbiToY58wg8t1pyHIQqfEjTetWqj4plVZGVxhlUA5Y03UqOzH2MN8o6UcWKeYuch5i9PMsvv5npC1lFlgb00MYXObsbO')
 
 function PaymentPlaneSection() {
     const [billingCycle, setBillingCycle] = useState('monthly')
@@ -46,10 +47,10 @@ function PaymentPlaneSection() {
         return
       }
       try {
-        const response = await axios.post('Dari Belakang', {
+        const response = await axios.post('http://localhost:3000/pembayaran', {
           planId: plan.name,
           planAmount: plan.amount,
-          planCurrency: 'idr',
+          planCurrency: 'usd',
         })
         if(response.data && response.data.url){
           window.location.href = response.data.url
