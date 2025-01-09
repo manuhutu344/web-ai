@@ -20,7 +20,7 @@ app.post('/pembayaran', async (req, res) => {
         line_items: [
           {
             price_data: {
-              currency: planCurrency || 'usd',
+              currency: planCurrency || 'idr',
               product_data: {
                 name: planId,
               },

@@ -10,7 +10,7 @@ function PaymentPlaneSection() {
     const plans = [
         {
             name: 'Coba',
-            amount: 1500,
+            amount: 150.000,
             description: "Coba Saja Baru Coba",
             features: [
               'Project Slot Hanya Satu',
@@ -50,7 +50,7 @@ function PaymentPlaneSection() {
         const response = await axios.post('http://localhost:3000/pembayaran', {
           planId: plan.name,
           planAmount: plan.amount,
-          planCurrency: 'usd',
+          planCurrency: 'idr',
         })
         if(response.data && response.data.url){
           window.location.href = response.data.url
@@ -81,7 +81,7 @@ function PaymentPlaneSection() {
               {plan.description}
             </p>
             <p className="text-4xl font-bold text-gray-800 mb-6">
-                ${plan.amount / 100} <span className="text-lg text-gray-500 ">/Bulan</span>
+                Rp{plan.amount} <span className="text-lg text-gray-500 ">/Bulan</span>
             </p>
             <ul className="text-left text-gray-700 mb-6 space-y-2">
                 {plan.features.map((feature, index)=>(
