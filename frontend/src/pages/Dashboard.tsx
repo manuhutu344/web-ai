@@ -54,6 +54,23 @@ return (
           <span className={style.navText}>Ambil Foto</span>
         </Link>
        </nav>
+       <div className={style.sidebarFooter}>
+        <p className={style.credits}>
+          (Credits: 50)
+        </p>
+        <div onClick={toggleCard} className={style.container}>
+          <img src={user?.profileImageUrl || user?.imageUrl || hair} alt="user avatar" className={style.avatarImage}/>
+        </div>
+        <div className={style.userInfo}>
+          {user ? (
+            <p className={style.userName}>
+              {user.fullName || "User Name"}
+            </p>
+          ):(
+            <p className={style.userName}>User Tamu</p>
+          )}
+        </div>
+       </div>
        </aside>
       )}
    </div>
