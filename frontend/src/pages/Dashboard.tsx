@@ -69,8 +69,21 @@ return (
           ):(
             <p className={style.userName}>User Tamu</p>
           )}
+          <p className={style.userEmail}>{maskeEmail(user?.primaryEmailAddress?.emailAddress || "user@example.com")}</p>
         </div>
        </div>
+       {showCard && user&& (
+        <div ref={cardRef} className={style.userCard}>
+            <div className={style.cardHeader}>
+              <img src={user.setProfileImageUrl || user.imageUrl || hair} alt="User Avatar" className={style.cardAvatar} />
+              <div>
+                <p className={style.cardUserName}>
+                  {user.fullName || "User Namenya"}
+                </p>
+              </div>
+            </div>
+        </div>
+       )}
        </aside>
       )}
    </div>
