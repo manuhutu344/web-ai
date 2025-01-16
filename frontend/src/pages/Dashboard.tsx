@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom"
 import {FaHome, FaCamera, FaChartLine, FaHistory, FaBars} from "react-icons/fa"
 import { useUser } from "@clerk/clerk-react"
 import {logo, hair} from "../assets/index"
-import style from "../styles/DashboardStyles"
+import styles from "../styles/DashboardStyles"
 
 function Dashboard() {
   const location = useLocation()
@@ -27,65 +27,70 @@ function Dashboard() {
     const [username, domain] = email.split("@")
     const maskedUsername = username.length > 3 ? `${username.slice(0, 3)}**` : username
     const maskedDomain = domain.split(".").map((part, index)=>(index === 0 ? `${part[0]}**` : part)).join('.')
+    return `${maskedUsername}@${maskedDomain}`
   }
 return (
-   <div className={style.container}>
+   <div className={styles.container}>
       {!isHomePage && (
-        <div className={style.mobileToggle}>
-          <span className={style.mobileTitle}>Analisis Rambut</span>
-          <button onClick={toggleSidebar} className={style.toggleButton}>
-              <FaBars className={style.toggleIcon} />
+        <div className={styles.mobileToggle}>
+          <span className={styles.mobileTitle}>Analisis Rambut</span>
+          <button onClick={toggleSidebar} className={styles.toggleButton}>
+              <FaBars className={styles.toggleIcon} />
           </button>
         </div>
       )}
       {!isHomePage &&(
-        <aside className={`${style.sidebar} ${showSidebar ? "translate-x-0": "-translate-x-full"} md:translate-x-0`}>
-         <div className={style.logoContainer}>
-          <img src={logo} alt="Logo"  className={style.logoImage}/>
-         <span className={style.logoText}>Analisis Rambut</span>
+        <aside className={`${styles.sidebar} ${showSidebar ? "translate-x-0": "-translate-x-full"} md:translate-x-0`}>
+         <div className={styles.logoContainer}>
+          <img src={logo} alt="Logo"  className={styles.logoImage}/>
+         <span className={styles.logoText}>Analisis Rambut</span>
        </div>
-       <nav className={style.nav}>
-        <Link to={"/dashboard/analysis"} className={`${style.navLink} ${location.pathname === "/dashboard/analysis" ? style.activeLink : ""}`}>
-          <FaChartLine className={style.navIcon} />
-          <span className={style.navText}>Cantik</span>
+       <nav className={styles.nav}>
+        <Link to={"/dashboard/analysis"} className={`${styles.navLink} ${location.pathname === "/dashboard/analysis" ? styles.activeLink : ""}`}>
+          <FaChartLine className={styles.navIcon} />
+          <span className={styles.navText}>Cantik</span>
         </Link>
-        <Link to={"/dashboard/photo"} className={`${style.navLink} ${location.pathname === "/dashboard/photo" ? style.activeLink : ""}`}>
-          <FaCamera className={style.navIcon} />
-          <span className={style.navText}>Ambil Foto</span>
+        <Link to={"/dashboard/photo"} className={`${styles.navLink} ${location.pathname === "/dashboard/photo" ? styles.activeLink : ""}`}>
+          <FaCamera className={styles.navIcon} />
+          <span className={styles.navText}>Ambil Foto</span>
         </Link>
        </nav>
-       <div className={style.sidebarFooter}>
-        <p className={style.credits}>
+       <div className={styles.sidebarFooter}>
+        <p className={styles.credits}>
           (Credits: 50)
         </p>
-        <div onClick={toggleCard} className={style.container}>
-          <img src={user?.profileImageUrl || user?.imageUrl || hair} alt="user avatar" className={style.avatarImage}/>
+        <div onClick={toggleCard} className={styles.avatarContainer}>
+          <img src={user?.profileImageUrl || user?.imageUrl || hair} alt="user avatar" className={styles.avatarImage}/>
         </div>
-        <div className={style.userInfo}>
+        <div className={styles.userInfo}>
           {user ? (
-            <p className={style.userName}>
+            <p className={styles.userName}>
               {user.fullName || "User Name"}
             </p>
           ):(
-            <p className={style.userName}>User Tamu</p>
+            <p className={styles.userName}>User Tamu</p>
           )}
-          <p className={style.userEmail}>{maskeEmail(user?.primaryEmailAddress?.emailAddress || "user@example.com")}</p>
+          <p className={styles.userEmail}>{maskeEmail(user?.primaryEmailAddress?.emailAddress || "user@example.com")}</p>
         </div>
        </div>
        {showCard && user&& (
-        <div ref={cardRef} className={style.userCard}>
-            <div className={style.cardHeader}>
-              <img src={user.setProfileImageUrl || user.imageUrl || hair} alt="User Avatar" className={style.cardAvatar} />
+        <div ref={cardRef} className={styles.userCard}>
+            <div className={styles.cardHeader}>
+              <img src={user.profilImageUrl || user.imageUrl || hair} alt="User Avatar" className={styles.cardAvatar} />
               <div>
-                <p className={style.cardUserName}>
+                <p className={styles.cardUserName}>
                   {user.fullName || "User Namenya"}
                 </p>
+                <p className={styles.cardUserEmail}>{user.primaryEmailAddress?.emailAddress || "Email User"}</p>
               </div>
             </div>
         </div>
        )}
        </aside>
       )}
+      <div className={styles.mainContent}>
+        <Outlet />
+      </div>
    </div>
   )
 }
