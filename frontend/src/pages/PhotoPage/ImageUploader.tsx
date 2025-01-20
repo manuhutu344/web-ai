@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 import {alibaba, amazon, jumia} from "../../assets/index"
 import styles from "../../styles/ImageUploaderStyles"
 import UpgradeCard from "../UpgradeCard"
-import { div } from "three/tsl"
 
 interface Props{
     className: string,
@@ -76,7 +75,7 @@ function ImageUploader({imageSrc, setImageSrc, predictions, classifyImage, setIs
             {imageSrc ? (
                 <img src={imageSrc} alt="Capured" className={styles.image} />
             ):(
-                <img src="https://ecamle.com" alt="Masukan Foto" className={styles.image} />
+                <img src="https://ecam[le.com" alt="Masukan Foto" className={styles.image} />
             )}
             <h2 className={styles.title}>Ambil Foto Anda</h2>
             <p className={styles.description}>Untuk Kita Analisis Lebih Lanjut</p>
@@ -88,8 +87,52 @@ function ImageUploader({imageSrc, setImageSrc, predictions, classifyImage, setIs
                 Pake Kamera
             </button>
             <div className="flex justify-center space-x-4 mb-4">
-
+                <div className="relative inline-block">
+                    <input type="file" id="fileInput" accept="image/png, image.jpeg, image/jpg" onChange={(event)=>{
+                        const file = event.target.files?.[0]
+                        if(file) handleFileChange(file)
+                    }} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" />
+                    <button className={styles.button} onClick={handleInputClick} disabled={credits < 1}>
+                        Pilih Dari Komputer Anda
+                    </button>
+                </div>
             </div>
+            {predictions && (
+                <div className={styles.analysisContainer}>
+                    <h3 className={styles.analysisTitle}>Hasil Analisis</h3>
+                    <ul>
+                        {predictions.map((concept, index)=>(
+                            <li key={index} className={styles.analysisItem}>
+                                {concept.className} : {Math.round(concept.probability * 100)}%
+                            </li>
+                        ))}
+                    </ul>
+                    <button className="mt-2 bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 focus:outline-none" onClick={handleBuyHairProducts}>
+                        Beli Produk Rambut
+                    </button>
+                </div>
+            )}
+            {showModel && (
+                <div className={styles.modalContainer}>
+                    <div className={styles.modalContent}>
+                        <h3 className={styles.modalTitle}>Pilih Situs Web</h3>
+                        <div className="flex flex-col space-y-2">
+                            <button className={styles.websiteButton} onClick={()=>handleWebsiteClick('Amazon')}>
+                                <img src={amazon} alt="Amazon" className="w-6 h-6" />
+                                <span>Amazon</span>
+                            </button>
+                            <button className={styles.websiteButton} onClick={()=>handleWebsiteClick('Alibaba')}>
+                                <img src={alibaba} alt="Alibaba" className="w-6 h-6" />
+                                <span>Alibaba</span>
+                            </button>
+                            <button className={styles.websiteButton} onClick={()=>handleWebsiteClick('Jumia')}>
+                                <img src={alibaba} alt="Jumiah" className="w-6 h-6" />
+                                <span>Jumiah</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
             </>
         )}
 
