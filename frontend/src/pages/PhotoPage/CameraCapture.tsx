@@ -54,6 +54,21 @@ const CameraCapture: React.FC <{
       <div className="relative">
         <video ref={videoRef} autoPlay className={styles.video}></video>
         <canvas ref={canvasRef} className="hidden"></canvas>
+        <div className={styles.buttonContainer}>
+            <button className={styles.buttonGreen} onClick={openCamera}>
+              Gunakan Kamera
+            </button>
+            <button className={styles.buttonPink} onClick={caputrePhoto}>
+              Mengambil Foto
+            </button>
+            <button className={styles.buttonRed} onClick={()=>{
+              setIsCameraView(false)
+              const stream = videoRef.current?.srcObject as MediaStream
+              if(stream) stream.getTracks().forEach((track) => track.stop())
+            }}>
+              Tutup Kamera
+            </button>
+        </div>
       </div>
     </div>
   )
